@@ -6,6 +6,8 @@ import { getRepositoryToken } from '@nestjs/typeorm';
 
 const mockPokemonsRepository = {
   save: jest.fn().mockImplementation((pokemon) => Promise.resolve(pokemon)),
+  find: jest.fn(),
+  findOne: jest.fn(),
 };
 
 describe('PokemonsService', () => {
@@ -34,5 +36,27 @@ describe('PokemonsService', () => {
     };
     expect(await service.create(pokemon)).toEqual(pokemon);
     expect(repository.save).toHaveBeenCalledWith(pokemon);
+  });
+
+  it('should call the findAll method and return all pokemons', async () => {
+    const mockPokemons = [
+      { id: 1, name: 'toto' },
+      { id: 2, name: 'titi' },
+    ];
+    jest.spyOn(repository, 'find').mockResolvedValue(mockPokemons);
+    expect(await service.findAll()).toEqual(mockPokemons);
+    expect(repository.find).toHaveBeenCalled();
+  });
+
+  it('should call the findByName method and return the pokemon', async () => {
+    const pokemon: Pokemons = {
+      id: 1,
+      name: 'Pikachu',
+    };
+    jest.spyOn(repository, 'findOne').mockResolvedValue(pokemon);
+    expect(await service.findByName('Pikachu')).toEqual(pokemon);
+    expect(repository.findOne).toHaveBeenCalledWith({
+      where: { name: 'Pikachu' },
+    });
   });
 });

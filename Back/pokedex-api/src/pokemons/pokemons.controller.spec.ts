@@ -11,6 +11,8 @@ describe('PokemonsController', () => {
     create: jest
       .fn()
       .mockImplementation((pokemon: Pokemons) => Promise.resolve(pokemon)),
+    findAll: jest.fn(),
+    findByName: jest.fn(),
   };
 
   beforeEach(async () => {
@@ -30,5 +32,25 @@ describe('PokemonsController', () => {
     };
     expect(await controller.create(pokemon)).toEqual(pokemon);
     expect(service.create).toHaveBeenCalledWith(pokemon);
+  });
+
+  it('should call the findAll method and return all pokemons', async () => {
+    const mockPokemons = [
+      { id: 1, name: 'toto' },
+      { id: 2, name: 'titi' },
+    ];
+    jest.spyOn(service, 'findAll').mockResolvedValue(mockPokemons);
+    expect(await controller.findAll()).toEqual(mockPokemons);
+    expect(service.findAll).toHaveBeenCalled();
+  });
+
+  it('should call the findByName method and return the pokemon', async () => {
+    const pokemon: Pokemons = {
+      id: 1,
+      name: 'Pikachu',
+    };
+    jest.spyOn(service, 'findByName').mockResolvedValue(pokemon);
+    expect(await controller.findByName('Pikachu')).toEqual(pokemon);
+    expect(service.findByName).toHaveBeenCalledWith('Pikachu');
   });
 });

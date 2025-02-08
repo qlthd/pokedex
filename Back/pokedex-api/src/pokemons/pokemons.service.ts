@@ -13,4 +13,12 @@ export class PokemonsService {
   async create(pokemon: Pokemons): Promise<Pokemons> {
     return this.pokemonsRepository.save(pokemon);
   }
+
+  async findAll(): Promise<Pokemons[]> {
+    return this.pokemonsRepository.find();
+  }
+
+  async findByName(name: string): Promise<Pokemons | null> {
+    return this.pokemonsRepository.findOne({ where: { name } });
+  }
 }
