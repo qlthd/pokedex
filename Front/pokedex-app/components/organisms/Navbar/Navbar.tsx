@@ -12,7 +12,7 @@ export const Navbar = () => {
             <Image src={logo} alt="Logo" width={100} height={100} />
             <ul className="hidden md:flex gap-x-6 text-black">
               <li>
-                <Link href="/home">
+                <Link href="/">
                   <p>Home</p>
                 </Link>
               </li>
