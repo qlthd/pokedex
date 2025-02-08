@@ -7,6 +7,6 @@ import { Pokemons } from './pokemons';
 @Module({
   imports: [TypeOrmModule.forFeature([Pokemons])],
   controllers: [PokemonsController],
-  providers: [PokemonsService]
+  providers: [PokemonsService],
 })
 export class PokemonsModule {}

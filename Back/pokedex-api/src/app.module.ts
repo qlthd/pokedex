@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Pokemon } from './pokemon/pokemon';
 import { PokemonsModule } from './pokemons/pokemons.module';
+import { Pokemons } from './pokemons/pokemons';
 
 @Module({
   imports: [
@@ -12,7 +12,7 @@ import { PokemonsModule } from './pokemons/pokemons.module';
       username: 'root',
       password: 'root',
       database: 'test',
-      entities: [Pokemon],
+      entities: [Pokemons],
       synchronize: true,
     }),
     PokemonsModule,

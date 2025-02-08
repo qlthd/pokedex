@@ -5,12 +5,12 @@ import { Pokemons } from './pokemons';
 
 @Injectable()
 export class PokemonsService {
-    constructor(
-        @InjectRepository(Pokemons)
-        private readonly pokemonsRepository: Repository<Pokemons>,
-    ) {}
+  constructor(
+    @InjectRepository(Pokemons)
+    private readonly pokemonsRepository: Repository<Pokemons>,
+  ) {}
 
-    async create(pokemon: Pokemons): Promise<Pokemons> {
-        return this.pokemonsRepository.save(pokemon);
-    }
+  async create(pokemon: Pokemons): Promise<Pokemons> {
+    return this.pokemonsRepository.save(pokemon);
+  }
 }

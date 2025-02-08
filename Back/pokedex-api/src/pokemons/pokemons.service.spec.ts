@@ -5,7 +5,7 @@ import { Repository } from 'typeorm';
 import { getRepositoryToken } from '@nestjs/typeorm';
 
 const mockPokemonsRepository = {
-  save: jest.fn().mockImplementation(pokemon => Promise.resolve(pokemon)),
+  save: jest.fn().mockImplementation((pokemon) => Promise.resolve(pokemon)),
 };
 
 describe('PokemonsService', () => {
@@ -15,17 +15,20 @@ describe('PokemonsService', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-          PokemonsService,
-        { provide: getRepositoryToken(Pokemons), useValue: mockPokemonsRepository },],
+        PokemonsService,
+        {
+          provide: getRepositoryToken(Pokemons),
+          useValue: mockPokemonsRepository,
+        },
+      ],
     }).compile();
 
     service = module.get<PokemonsService>(PokemonsService);
     repository = module.get<Repository<Pokemons>>(getRepositoryToken(Pokemons));
-
   });
 
   it('should call the create method and return the created pokemon', async () => {
-    const pokemon : Pokemons = {
+    const pokemon: Pokemons = {
       id: 1,
       name: 'Pikachu',
     };

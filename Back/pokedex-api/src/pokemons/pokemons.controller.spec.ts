@@ -8,15 +8,15 @@ describe('PokemonsController', () => {
   let service: PokemonsService;
 
   const mockPokemonsService = {
-    create: jest.fn().mockImplementation((pokemon: Pokemons) => Promise.resolve(pokemon)),
+    create: jest
+      .fn()
+      .mockImplementation((pokemon: Pokemons) => Promise.resolve(pokemon)),
   };
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [PokemonsController],
-      providers: [
-        { provide: PokemonsService, useValue: mockPokemonsService },
-      ],
+      providers: [{ provide: PokemonsService, useValue: mockPokemonsService }],
     }).compile();
 
     controller = module.get<PokemonsController>(PokemonsController);

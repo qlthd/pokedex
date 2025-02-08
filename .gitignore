@@ -11,3 +11,4 @@ yarn-error.log*
 .vscode/*
 .idea/
 /Back/pokedex-api/node_modules
+/Back/pokedex-api/dist
