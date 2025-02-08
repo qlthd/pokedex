@@ -9,4 +9,5 @@ yarn-error.log*
 .pnp.js
 
 .vscode/*
-.idea/*
+.idea/
+/Back/pokedex-api/node_modules
