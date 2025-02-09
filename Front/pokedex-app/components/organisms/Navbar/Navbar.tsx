@@ -21,6 +21,11 @@ export const Navbar = () => {
                   <p>Pokedex</p>
                 </Link>
               </li>
+              <li>
+                <Link href="/create-pokemon">
+                  <p>Create a pokemon</p>
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
