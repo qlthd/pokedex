@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import logo from '../../../public/pokemon.svg';
+import logo from '../../../public/pokedex.svg';
 import Image from 'next/image';
 
 export const Navbar = () => {
