@@ -11,7 +11,7 @@ export default {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
-        yellow: '#F6F8FC',
+        yellow: '#F87060',
       },
       fontFamily: {
         typewolf: ['Typewolf', 'sans-serif'],
