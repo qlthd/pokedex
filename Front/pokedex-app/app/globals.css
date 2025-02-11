@@ -17,12 +17,13 @@
 }
 
 body {
-  color: var(--foreground);
+  /*color: var(--foreground);*/
   /*background: var(--background);*/
   font-family:
     Work Sans,
     Arial,
     Helvetica,
     sans-serif;
-  background: #f6f8fc;
+  background: #F87060;
+  color: #102542
 }
