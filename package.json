@@ -1,0 +1,20 @@
+{
+  "name": "pokedex",
+  "version": "0.0.1",
+  "private": false,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo run dev",
+    "dev:api": "turbo run dev --filter=./apps/api",
+    "dev:web": "turbo run dev --filter=./apps/web"
+  },
+  "devDependencies": {
+    "turbo": "^2.4.1",
+    "typescript": "^5.7.3"
+  },
+  "packageManager": "pnpm@10.3.0",
+  "engines": {
+    "node": ">=20"
+  }
+
+}

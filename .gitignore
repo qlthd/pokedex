@@ -10,5 +10,8 @@ yarn-error.log*
 
 .vscode/*
 .idea/
-/Back/pokedex-api/node_modules
-/Back/pokedex-api/dist
+
+.turbo
+dist
+node_modules
+.DS_Store
