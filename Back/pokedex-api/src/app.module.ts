@@ -4,6 +4,8 @@ import { PokemonsModule } from './pokemons/pokemons.module';
 import { Pokemons } from './pokemons/pokemons';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { Type } from './type/type';
+import { TypeModule } from './type/type.module';
 
 @Module({
   imports: [
@@ -14,10 +16,11 @@ import { AppService } from './app.service';
       username: 'root',
       password: '',
       database: 'pokemon-app',
-      entities: [Pokemons],
+      entities: [Pokemons, Type],
       synchronize: true,
     }),
     PokemonsModule,
+    TypeModule,
   ],
   controllers: [AppController],
   providers: [AppService],

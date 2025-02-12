@@ -33,6 +33,9 @@ describe('PokemonsService', () => {
     const pokemon: Pokemons = {
       id: 1,
       name: 'Pikachu',
+      types: [{ id: 1, name: 'Electric', pokemons: [] }],
+      description: 'Electric type pokemon',
+      imageUrl: 'https://pokeapi.co/api/v2/pokemon/25/',
     };
     expect(await service.create(pokemon)).toEqual(pokemon);
     expect(repository.save).toHaveBeenCalledWith(pokemon);
@@ -40,8 +43,20 @@ describe('PokemonsService', () => {
 
   it('should call the findAll method and return all pokemons', async () => {
     const mockPokemons = [
-      { id: 1, name: 'toto' },
-      { id: 2, name: 'titi' },
+      {
+        id: 1,
+        name: 'toto',
+        types: [{ id: 2, name: 'Feu', pokemons: [] }],
+        description: 'Electric type pokemon',
+        imageUrl: 'https://test.image',
+      },
+      {
+        id: 2,
+        name: 'titi',
+        types: [{ id: 3, name: 'Eau', pokemons: [] }],
+        description: 'Eau type pokemon',
+        imageUrl: 'https://test.image2',
+      },
     ];
     jest.spyOn(repository, 'find').mockResolvedValue(mockPokemons);
     expect(await service.findAll()).toEqual(mockPokemons);
@@ -52,6 +67,9 @@ describe('PokemonsService', () => {
     const pokemon: Pokemons = {
       id: 1,
       name: 'Pikachu',
+      types: [{ id: 1, name: 'Electric', pokemons: [] }],
+      description: 'Electric type pokemon',
+      imageUrl: 'https://pokeapi.co/api/v2/pokemon/25/',
     };
     jest.spyOn(repository, 'findOne').mockResolvedValue(pokemon);
     expect(await service.findByName('Pikachu')).toEqual(pokemon);

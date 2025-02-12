@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  JoinTable,
+  ManyToMany,
+} from 'typeorm';
+import { Type } from '../type/type';
 
 @Entity()
 export class Pokemons {
@@ -7,4 +14,14 @@ export class Pokemons {
 
   @Column()
   name: string;
+
+  @ManyToMany(() => Type)
+  @JoinTable()
+  types: Type[];
+
+  @Column()
+  description: string;
+
+  @Column()
+  imageUrl: string;
 }
