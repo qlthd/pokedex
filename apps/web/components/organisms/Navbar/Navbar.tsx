@@ -6,7 +6,7 @@ import Image from 'next/image';
 export const Navbar = () => {
   return (
     <>
-      <div className="w-full h-20 bg-yellow sticky top-0 shadow-md">
+      <div className="w-full h-20 bg-terracotta sticky top-0 shadow-md">
         <div className="container mx-auto px-4 h-full">
           <div className="flex justify-between items-center h-full">
             <Image src={logo} alt="Logo" width={100} height={100} />
