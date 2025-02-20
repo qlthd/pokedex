@@ -1,6 +1,6 @@
 export const fetchUrl = async (url: URL | RequestInfo) => {
   try {
-    const response = await fetch(`https://tyradex.vercel.app/api/v1/${url}`);
+    const response = await fetch(`http://localhost:3010/${url}`);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }

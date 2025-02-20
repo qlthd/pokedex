@@ -1,6 +1,7 @@
 export type PokecardProps = {
   name: string;
-  pokedexId: number;
+  id: number;
+  description: string;
   imageUrl: string;
   types: PokemonType[];
 };

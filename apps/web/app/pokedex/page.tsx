@@ -5,26 +5,33 @@ import SearchIcon from '@mui/icons-material/Search';
 import Pokecard from '@/components/molecules/Pokecard/Pokecard';
 import Image from 'next/image';
 import pokedex from '../../public/pokedex.svg';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { fetchUrl } from '@/api/apicall';
+import { debounce } from '@/shared/utils';
 
 const Page = () => {
-  const [pokemon, setPokemon] = useState([]);
+  const [fetchedPokemons, setFetchedPokemons] = useState([]);
 
-  const fetchPokemon = async () => {
+  const fetchPokemon = async (name?: string) => {
     try {
-      const data = await fetchUrl('pokemon');
-      const tenPokemon = data.slice(1, 11);
-      setPokemon(tenPokemon);
-      console.log(data);
+      const data = await fetchUrl(`pokemons${name ? `/${name}` : ''}`);
+      setFetchedPokemons(data);
     } catch (error) {
-      console.error('Fetch error:', error);
+      setFetchedPokemons([]);
     }
   };
 
   useEffect(() => {
     fetchPokemon();
   }, []);
+
+  const debouncedSearch = useCallback(debounce((event: any) => {
+    fetchPokemon(event.target.value);
+  }, 800), []);
+
+  const onSearchTextChange = (event: any) => {
+    debouncedSearch(event);
+  };
 
   return (
     <div>
@@ -37,18 +44,20 @@ const Page = () => {
           variant="outlined"
           className="shadow-lg col-span-9 bg-white rounded-md"
           placeholder="Search Pokemon"
+          onChange={onSearchTextChange}
         />
         <div className="bg-red-500 rounded-md p-1 flex items-center justify-center col-span-1 px-7 py-4 shadow-lg">
           <SearchIcon className="text-white" />
         </div>
       </div>
       <div className="mx-auto w-full max-w-3xl grid grid-cols-2 gap-4">
-        {pokemon.map((pokemon: any) => (
+        {fetchedPokemons.map((pokemon: any) => (
           <Pokecard
-            key={pokemon.pokedex_id}
-            name={pokemon.name.fr}
-            pokedexId={pokemon.pokedex_id}
-            imageUrl={pokemon.sprites.regular}
+            key={pokemon.id}
+            name={pokemon.name}
+            id={pokemon.id}
+            imageUrl={pokemon.imageUrl}
+            description={pokemon.description}
             types={pokemon.types.map((type: { name: string }) => ({ name: type.name }))}
           />
         ))}
